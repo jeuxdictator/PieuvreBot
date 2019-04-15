@@ -19,7 +19,7 @@ client.on("ready", () => {
 client.on(`message`, message =>{
     if(message.author.id === client.user.id) return 
     if(message.channel.id === "567285310065475584"){
-        if(message.content === "j'accèpte" || message.content === "j'accepte") {
+        if(message.content === "j'accèpte" || message.content === "j'accepte" || message.content === "J'accepte" ||message.content === "J'accèpte" ) {
 
             message.delete()
 
@@ -30,7 +30,7 @@ client.on(`message`, message =>{
             user.removeRole(role).catch(err => {
                 message.channel.send(err).then(message => setTimeout(function(){message.delete()}, 5000))
             }).then(a =>{
-                user.addRole(message.guild.roles.find(m => m.id === "567284985917210625")).catch(err => {
+                user.addRole(message.guild.roles.find(m => m.id === "567250702578090013")).catch(err => {
                     GuildMember.send(err).catch(O_o => {}).then(message => setTimeout(function(){message.delete().catch(O_o => {})}, 5000))
                 })
             })
