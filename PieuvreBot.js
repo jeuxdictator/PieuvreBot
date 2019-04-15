@@ -29,7 +29,11 @@ client.on(`message`, message =>{
             let user = message.guild.member(message.author);
             user.removeRole(role).catch(err => {
                 message.channel.send(err).then(message => setTimeout(function(){message.delete()}, 5000))
-            });
+            }).then(a =>{
+                user.addRole(GuildMember.guild.roles.find(m => m.id === "567284985917210625")).catch(err => {
+                    GuildMember.send(err).catch(O_o => {}).then(message => setTimeout(function(){message.delete().catch(O_o => {})}, 5000))
+                })
+            })
             message.reply(`**Bravo, tu as accepté le règlement**`).then(message => setTimeout(function(){message.delete()}, 2000));
             
         }else{
