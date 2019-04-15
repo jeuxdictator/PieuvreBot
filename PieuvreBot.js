@@ -7,7 +7,7 @@ client.on("ready", () => {
     console.log(`connecté : ${client.user.tag}!`)
     client.user.setPresence({
         game: { 
-            name: `les gens se conecter aux serveur !`,
+            name: `les gens se connecter aux serveur !`,
             type: 'WATCHING' 
         },
         status: 'dnd' 
@@ -27,7 +27,7 @@ client.on(`message`, message =>{
             if(!role) return console.log("Le rôle n'existe pas !");
 
             let user = message.guild.member(message.author);
-            user.removeRoleRole(role).catch(err => {
+            user.removeRole(role).catch(err => {
                 message.channel.send(err).then(message => setTimeout(function(){message.delete()}, 5000))
             });
             message.reply(`**Bravo, tu as accepté le règlement**`).then(message => setTimeout(function(){message.delete()}, 2000));
