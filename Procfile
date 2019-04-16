@@ -1,2 +1,2 @@
 worker: node PieuvreBot.js
-worker: node PieuvreBotjeux.js
+processor: node PieuvreBotjeux.js
