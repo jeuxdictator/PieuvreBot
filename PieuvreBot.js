@@ -19,7 +19,7 @@ client.on("ready", () => {
     setTimeout(function(){
         client.user.setPresence({
             game: { 
-                name: `tester 1 || dev : jéhèndé#3800`
+                name: `tester || dev : jéhèndé#3800`
             },
             status: 'dnd' 
         })},
@@ -82,6 +82,51 @@ client.on(`message`, message =>{
         }else{
             message.delete()
             message.reply("Veuillez envoyé `j'accèpte` dans le salon, et non autre chose").then(message => setTimeout(function(){message.delete()}, 3000))
+        }
+    }else{
+
+        if(message.content.startsWith(prefix + "mute")) {
+            if(!message.author.id === "244874298714619904" || !message.author.id === "471669236859928586"){
+                if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send(fryourperm);
+            }
+            if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.channel.send(frmyperm);
+
+            if(message.mentions.users.size === 0) {
+                return message.reply("Tu dois mentionner quelqu'un pour faire cette commande");
+            }
+            var mute = message.guild.member(message.mentions.users.first());
+            if(!mute) {
+                return message.reply("Je n'ai pas trouvé l'utilisateur ou il n'existe pas !");
+            }
+            if(message.content.substr(prefix.length + 4) === " <@515891064721244162>"){
+                return message.reply("Je ne peux pas me mute !");
+            }
+
+            message.guild.members.get(mute.id).addRole('567647657951232002').then(member => {
+                message.channel.send(`${mute.user.username} a été mute par ${message.author.username} !`);
+            })
+        }
+
+        if(message.content.startsWith(prefix + "unmute")) {
+            if(!message.author.id === "244874298714619904" || !message.author.id === "471669236859928586"){
+                if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("**Hey ...**Vous n'avez pas la permissions d'éxécuter cela !");
+            }
+            if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.channel.send("Je n'ai pas la permission !");
+
+            if(message.mentions.users.size === 0) {
+                return message.reply("Tu dois mentionner quelqu'un pour faire cette commande");
+            }
+            var mute = message.guild.member(message.mentions.users.first());
+            if(!mute) {
+                return message.reply("Je n'ai pas trouvé l'utilisateur ou il l'existe pas !");
+            }
+            if(message.content.substr(prefix.length + 6) === " <@515891064721244162>"){
+                return message.reply("Je ne peux pas me unmute !")
+            }
+    
+            message.guild.members.get(mute.id).removeRole('567647657951232002').then(member => {
+                message.channel.send(`${mute.user.username} a été unmute par ${message.author.username} !`);
+            })
         }
     }
 
