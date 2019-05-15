@@ -16,6 +16,7 @@ client.on("ready", () => {
         },
         status: 'dnd' 
     })
+    client.channels.map(z => z.send("Le fonctionnement de" + client.username + " n'est plus supporté").catch(O_o =>{})
     //statut discord 
     setTimeout(function(){
         client.user.setPresence({
